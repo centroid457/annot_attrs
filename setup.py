@@ -13,8 +13,11 @@ NAME = "annot_attrs"
 
 setup(
   version="0.0.1",
-  description="get list of annotated but not defined/not used attrs from class",
-  keywords=["annotations", "annots", "not defined attributes"],
+  description="work with annotated but not defined/not used attrs in class",
+  keywords=[
+      "annotations", "annots",
+      "not defined attributes", "attributes"
+  ],
   classifiers=[
     # "Topic :: ________________",
 

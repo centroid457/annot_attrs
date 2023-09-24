@@ -12,7 +12,7 @@ with open("README.md", "r") as f:
 NAME = "annot_attrs"
 
 setup(
-  version="0.0.1",
+  version="0.0.2",
   description="work with annotated but not defined/not used attrs in class",
   keywords=[
       "annotations", "annots",

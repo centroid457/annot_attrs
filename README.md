@@ -3,8 +3,11 @@ Designed to get list of annotated but not defined/not used attrs from class (not
 may be helpful further in instance to check that really have values.
 
 ## Features
-1. get list of unused attributes from class
+1. get set of unused attributes from class(not instance!)
 2. work with nested classes
+3. get values 
+   * by case insensitive names
+   * by dict key access method
 
 
 ## License
@@ -35,7 +38,7 @@ from annot_attrs import *
 
 class Cls(AnnotAttrs):
     ATTR1: int
-    ATTR2: Optional[int] = None
+    ATTR2: int = 2
 
 
 assert Cls().annots_get_set() == {"ATTR1", }
@@ -54,4 +57,25 @@ inst.ATTR2 = 1
 inst.ATTR3 = 1
 
 assert Cls2().annots_get_set() == {"ATTR1", "ATTR3", }
+
+
+
+assert Cls().ATTR2 == 2
+assert Cls().attr2 == 2
+        
+assert Cls()["ATTR2"] == 2
+assert Cls()["attr2"] == 2
+
+
+
+obj = Cls()
+try:
+    obj.annots_get_dict()
+except Exx_AttrNotExist:
+    pass
+else:
+    assert False
+
+obj.ATTR1 = 1
+assert obj.annots_get_dict() == {"ATTR1": 1}
 ```

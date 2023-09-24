@@ -9,7 +9,8 @@ class Exx_AttrNotExist(Exception):
 # =====================================================================================================================
 class AnnotAttrs:
     """
-    DONT USE with typing.NamedTuple! will raise!
+    DONT INHERIT with typing.NamedTuple! will raise!
+    For NamedTuple use obj-style! obj parameter!
     """
     def __getattr__(self, item: str) -> Union[str, NoReturn]:
         if item in ["__isabstractmethod__", ]:
@@ -33,37 +34,47 @@ class AnnotAttrs:
     def print(self) -> None:
         print(self)
 
-    def annots_get_set(self) -> Set[str]:
+    def annots_get_set(self, obj: Optional[Any] = None) -> Set[str]:
         """
         :return: set of undefined annotated attributes in class (not instance!)
         """
         annots = set()
-        for cls in self.__class__.__mro__[:-1]:
+        if obj is None:
+            obj = self
+        mro = obj.__class__.__mro__
+        for cls in mro[:-1]:
+            if cls == tuple and hasattr(obj, "_fields"):    # NamedTuple
+                return set(obj._fields).difference(set(obj._field_defaults))
+            if not hasattr(cls, "__annotations__"):     # for last class (tuple) in NamedTuple!
+                continue
             for name in set(cls.__annotations__):
                 if not hasattr(cls, name):
                     annots.update({name, })
         # print(annots)
         return annots
 
-    def annots_get_dict(self) -> Union[Dict[str, Any], NoReturn]:
+    def annots_get_dict(self, obj: Optional[Any] = None) -> Union[Dict[str, Any], NoReturn]:
         """
         :return: dict of undefined annotated attributes in class but defined in instance!
         """
         annots = dict()
-        for name in self.annots_get_set():
-            annots.update({name: self.attr_get_case_insensitive(name)})
+        for name in self.annots_get_set(obj):
+            annots.update({name: self.attr_get_case_insensitive(name, obj)})
         return annots
 
-    def attr_get_case_insensitive(self, name: str) -> Union[str, NoReturn]:
+    def attr_get_case_insensitive(self, name: str, obj: Optional[Any] = None) -> Union[str, NoReturn]:
         """
         get value for attr name without case sense.
         if no attr name in source - raise!
         """
-        attrs_all = list(filter(lambda attr: not callable(getattr(self, attr)) and not attr.startswith("__"), dir(self)))
+        if obj is None:
+            obj = self
+
+        attrs_all = list(filter(lambda attr: not callable(getattr(obj, attr)) and not attr.startswith("__"), dir(obj)))
 
         attrs_similar = list(filter(lambda attr: attr.lower() == name.lower(), attrs_all))
         if len(attrs_similar) == 1:
-            return getattr(self, attrs_similar[0])
+            return getattr(obj, attrs_similar[0])
         elif len(attrs_similar) == 0:
             msg = f"[CRITICAL]no[{name=}] in any cases [{attrs_all=}]"
             raise Exx_AttrNotExist(msg)
@@ -71,12 +82,12 @@ class AnnotAttrs:
             msg = f"[CRITICAL]exists several similar [{attrs_similar=}]"
             raise Exx_AttrNotExist(msg)
 
-    def annots_check_values_exists(self) -> Union[True, NoReturn]:
+    def annots_check_values_exists(self, obj: Optional[Any] = None) -> Union[True, NoReturn]:
         """
         check all annotations have values!
         Raise if not any value
         """
-        self.annots_get_dict()
+        self.annots_get_dict(obj)
         return True
 
 

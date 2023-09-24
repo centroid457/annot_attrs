@@ -78,21 +78,36 @@ class Test:
         else:
             assert False
 
-    @pytest.mark.xfail
-    def test__NamedTuple(self):
-        class Cls(AnnotAttrs, NamedTuple):
+    def test__obj(self):
+        class Cls:
             ATTR1: int
             ATTR2: int = 2
 
-        assert Cls()["ATTR2"] == 2
-        assert Cls()["attr2"] == 2
+        obj = Cls()
+        obj.ATTR1 = 1
 
+        assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
+        assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1}
+
+    def test__obj_and_NamedTuple(self):
         try:
-            Cls()["ATTR222"]
-        except Exx_AttrNotExist:
+            class Cls(AnnotAttrs, NamedTuple):
+                ATTR1: int
+                ATTR2: int = 2
+        except TypeError:
+            # TypeError: can only inherit from a NamedTuple type and Generic
             pass
         else:
-            assert False
+            assert True
+
+        class Cls(NamedTuple):
+            ATTR1: int
+            ATTR2: int = 2
+
+        obj = Cls(1)
+
+        assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
+        assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1}
 
 
 # =====================================================================================================================

@@ -8,6 +8,9 @@ class Exx_AttrNotExist(Exception):
 
 # =====================================================================================================================
 class AnnotAttrs:
+    """
+    DONT USE with typing.NamedTuple! will raise!
+    """
     def __getattr__(self, item: str) -> Union[str, NoReturn]:
         if item in ["__isabstractmethod__", ]:
             return

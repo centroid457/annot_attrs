@@ -78,5 +78,21 @@ class Test:
         else:
             assert False
 
+    @pytest.mark.xfail
+    def test__NamedTuple(self):
+        class Cls(AnnotAttrs, NamedTuple):
+            ATTR1: int
+            ATTR2: int = 2
+
+        assert Cls()["ATTR2"] == 2
+        assert Cls()["attr2"] == 2
+
+        try:
+            Cls()["ATTR222"]
+        except Exx_AttrNotExist:
+            pass
+        else:
+            assert False
+
 
 # =====================================================================================================================

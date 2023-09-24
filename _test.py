@@ -10,23 +10,27 @@ from annot_attrs import *
 
 
 # =====================================================================================================================
-class Test__888888888888:
-    VICTIM: Type[NEW_CLASS____] = type("VICTIM", (NEW_CLASS____,), {})
-
-    @classmethod
-    def setup_class(cls):
-        pass
-
-    @classmethod
-    def teardown_class(cls):
-        pass
-
-    def setup_method(self, method):
-        self.VICTIM = type("VICTIM", (NEW_CLASS____,), {})
-
+class Test:
     # -----------------------------------------------------------------------------------------------------------------
-    def test__ClassMethod_and_obj(self):
-        assert True
+    def test__annots_set(self):
+        class Cls(AnnotAttrs):
+            ATTR1: int
+            ATTR2: Optional[int] = None
+
+        assert Cls().annots_set() == {"ATTR1", }
+
+        class Cls2(Cls):
+            ATTR1: int = 2
+            ATTR3: int
+
+        assert Cls2().annots_set() == {"ATTR1", "ATTR3", }
+
+        inst = Cls2()
+        inst.ATTR1 = 1
+        inst.ATTR2 = 1
+        inst.ATTR3 = 1
+
+        assert Cls2().annots_set() == {"ATTR1", "ATTR3", }
 
 
 # =====================================================================================================================

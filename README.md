@@ -36,18 +36,18 @@ class Cls(AnnotAttrs):
     ATTR1: int
     ATTR2: Optional[int] = None
 
-print(Cls().annots_list())  #[ATTR1, ]
+assert Cls().annots_set() == {"ATTR1", }
 
 class Cls2(Cls):
     ATTR1: int = 2
     ATTR3: int
 
-print(Cls2().annots_list())  #[ATTR1, ATTR3, ]
+assert Cls2().annots_set() == {"ATTR1", "ATTR3", }
 
 inst = Cls2()
 inst.ATTR1 = 1
 inst.ATTR2 = 1
 inst.ATTR3 = 1
 
-print(inst.annots_list())  #[ATTR1, ATTR3, ]
+assert Cls2().annots_set() == {"ATTR1", "ATTR3", }
 ```

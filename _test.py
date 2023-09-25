@@ -183,7 +183,7 @@ class Test:
 
     def test__PROPERTY_w_ITER_w_VALUES(self):
         # 1---------------------------------------------------------
-        # this will work correct
+        # this will work correctly
         class Cls:
             ATTR1: int
             ATTR2: int = 2
@@ -226,7 +226,7 @@ class Test:
             assert False
 
         # 3 FIXED---------------------------------------------------------
-        # this will work correct!
+        # this will work correctly!
         class Cls:
             ATTR1: int
             ATTR2: int = 2

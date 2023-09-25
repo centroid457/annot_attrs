@@ -1,7 +1,10 @@
 Release History
 ===============
 
-annots_get_values
+0.0.3 (2023-09-25)
+-------------------
+**NEW**
+- add annots_get_values
 
 0.0.2 (2023-09-25)
 -------------------

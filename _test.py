@@ -49,6 +49,15 @@ class Test:
         obj.ATTR1 = 1
         assert obj.annots_get_dict() == {"ATTR1": 1}
 
+    def test__annots_get_values(self):
+        class Cls(AnnotAttrs):
+            ATTR1: int
+            ATTR2: int = 2
+
+        obj = Cls()
+        obj.ATTR1 = 1
+        assert list(obj.annots_get_values()) == [1, ]
+
     def test__getattr(self):
         class Cls(AnnotAttrs):
             ATTR1: int
@@ -171,6 +180,33 @@ class Test:
         obj = Cls2(1)
         assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
         assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1, }
+
+    def test__PROPERTY(self):
+        # FIXME: finish!!!
+
+
+
+
+
+
+
+
+
+        class Cls:
+            def __iter__(self):
+                yield from [1,2,3,]
+
+        assert list(Cls()) == [1,2,3,]
+        assert sum(Cls()) == 6
+        assert dir(Cls()) != 6
+
+        class Cls(AnnotAttrs):
+            def __iter__(self):
+                yield from [1,2,3,]
+
+        assert list(Cls()) == [1,2,3,]
+        assert sum(Cls()) == 6
+        assert dir(Cls()) != 6
 
 
 # =====================================================================================================================

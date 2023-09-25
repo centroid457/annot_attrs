@@ -62,6 +62,9 @@ class AnnotAttrs:
             annots.update({name: self.attr_get_case_insensitive(name, obj)})
         return annots
 
+    def annots_get_values(self, obj: Optional[Any] = None) -> Union[Iterable[Any], NoReturn]:
+        return self.annots_get_dict(obj).values()
+
     def attr_get_case_insensitive(self, name: str, obj: Optional[Any] = None) -> Union[str, NoReturn]:
         """
         get value for attr name without case sense.

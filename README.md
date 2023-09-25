@@ -36,6 +36,21 @@ from annot_attrs import *
 
 ### 1. inheritance
 
+BEST practice - dont mess classes! use as separated object!
+```python
+from annot_attrs import *
+
+class Cls:
+    ATTR1: int
+    ATTR2: int = 2
+
+obj = Cls(1)
+
+assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
+assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1, }
+```
+
+
 ```python
 from annot_attrs import *
 

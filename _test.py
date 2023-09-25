@@ -181,32 +181,68 @@ class Test:
         assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
         assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1, }
 
-    def test__PROPERTY(self):
-        # FIXME: finish!!!
-
-
-
-
-
-
-
-
-
+    def test__PROPERTY_w_ITER_w_VALUES(self):
+        # 1---------------------------------------------------------
+        # this will work correct
         class Cls:
+            ATTR1: int
+            ATTR2: int = 2
+
+            @property
+            def meth_as_property(self):
+                return 333
+
+        obj = Cls()
+        obj.ATTR1 = 1
+
+        assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
+        assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1, }
+        assert list(AnnotAttrs().annots_get_values(obj)) == [1, ]
+
+        # 2---------------------------------------------------------
+        # this will RAISE!
+        class Cls:
+            ATTR1: int
+            ATTR2: int = 2
+
+            @property
+            def meth_as_property(self):
+                return sum(self)
+
             def __iter__(self):
-                yield from [1,2,3,]
+                yield from AnnotAttrs().annots_get_values(self)
 
-        assert list(Cls()) == [1,2,3,]
-        assert sum(Cls()) == 6
-        assert dir(Cls()) != 6
+        obj = Cls()
+        obj.ATTR1 = 1
 
-        class Cls(AnnotAttrs):
+        assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
+
+        try:
+            assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1, }
+            # assert list(AnnotAttrs().annots_get_values(obj)) == [1, ]
+        except RecursionError:
+            pass
+        else:
+            assert False
+
+        # 3 FIXED---------------------------------------------------------
+        # this will work correct!
+        class Cls:
+            ATTR1: int
+            ATTR2: int = 2
+
+            def meth_NO_property(self):
+                return sum(self)
+
             def __iter__(self):
-                yield from [1,2,3,]
+                yield from AnnotAttrs().annots_get_values(self)
 
-        assert list(Cls()) == [1,2,3,]
-        assert sum(Cls()) == 6
-        assert dir(Cls()) != 6
+        obj = Cls()
+        obj.ATTR1 = 1
+
+        assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
+        assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1, }
+        assert list(AnnotAttrs().annots_get_values(obj)) == [1, ]
 
 
 # =====================================================================================================================

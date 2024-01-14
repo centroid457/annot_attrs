@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+from PROJECT import PROJECT
 
 
 with open("README.md", "r") as f:
@@ -9,15 +10,11 @@ with open("README.md", "r") as f:
 # EDIT ================================================================================================================
 # EDIT ================================================================================================================
 # EDIT ================================================================================================================
-NAME = "annot_attrs"
 
 setup(
-  version="0.0.3",
-  description="work with annotated but not defined/not used attrs in class",
-  keywords=[
-      "annotations", "annots",
-      "not defined attributes", "attributes"
-  ],
+  version=PROJECT.VERSION_STR,
+  description=PROJECT.DESCRIPTION_SHORT,
+  keywords=PROJECT.KEYWORDS,
   classifiers=[
     # "Topic :: ________________",
 
@@ -41,21 +38,22 @@ setup(
     "Typing :: Typed",
   ],
 
-  name=NAME,
-  author="Andrei Starichenko",
-  author_email="centroid@mail.ru",
+  name=PROJECT.NAME_IMPORT,
+  author=PROJECT.AUTHOR_NAME,
+  author_email=PROJECT.AUTHOR_EMAIL,
   long_description=readme,
   long_description_content_type="text/markdown",
 
-  url="https://github.com/centroid457/",  # HOMEPAGE
+  url=PROJECT.AUTHOR_HOMEPAGE,  # HOMEPAGE
   project_urls={
     # "Documentation": f"https://github.com/centroid457/{NAME}/blob/main/GUIDE.md",
-    "Source": f"https://github.com/centroid457/{NAME}",
+    "Source": f"https://github.com/centroid457/{PROJECT.NAME_IMPORT}",
   },
 
-  packages=[NAME, ],
+  packages=[PROJECT.NAME_IMPORT, ],
   install_requires=[],
   python_requires=">=3.6"
 )
+
 
 # =====================================================================================================================

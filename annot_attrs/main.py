@@ -98,7 +98,7 @@ class AnnotAttrs:
             msg = f"[CRITICAL]exists several similar [{attrs_similar=}]"
             raise Exx_AttrNotExist(msg)
 
-    def annots_check_values_exists(self, obj: Optional[Any] = None) -> Union[True, NoReturn]:
+    def annots_check_values_exists(self, obj: Optional[Any] = None) -> Union[bool, NoReturn]:
         """check all annotations have values!
         Raise if not any value
         """

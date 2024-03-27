@@ -1,11 +1,11 @@
-# annot_attrs (v0.0.4)
+# annot_attrs (v0.0.5)
 
 ## DESCRIPTION_SHORT
-Work with annotated but not defined/not used attrs in class
+work with annotated but not defined/not used attrs in class
 
 ## DESCRIPTION_LONG
-designed to get list of annotated but not defined/not used attrs from class (not instance!).  
-may be helpful further in instance to check that really have values.
+Designed to get list of annotated but not defined/not used attrs from class (not instance!).  
+    may be helpful further in instance to check that really have values.
 
 
 ## Features

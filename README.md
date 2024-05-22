@@ -1,4 +1,4 @@
-# annot_attrs (v0.0.5)
+# annot_attrs (v0.0.6)
 
 ## DESCRIPTION_SHORT
 work with annotated but not defined/not used attrs in class

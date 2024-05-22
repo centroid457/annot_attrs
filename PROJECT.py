@@ -42,7 +42,7 @@ class PROJECT:
     ]
 
     # HISTORY -----------------------------------------------
-    VERSION: Tuple[int, int, int] = (0, 0, 5)
+    VERSION: Tuple[int, int, int] = (0, 0, 6)
     TODO: List[str] = [
         "..."
     ]
@@ -50,9 +50,7 @@ class PROJECT:
         "..."
     ]
     NEWS: List[str] = [
-        "[typing]Fix True usage",
-        "[sintax]fix for nested quotation marks",
-        "[pypi] apply last versions",
+        "add AnnotsNested",
     ]
 
     # FINALIZE -----------------------------------------------

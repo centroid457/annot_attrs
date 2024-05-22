@@ -42,7 +42,7 @@ class PROJECT:
     ]
 
     # HISTORY -----------------------------------------------
-    VERSION: Tuple[int, int, int] = (0, 0, 6)
+    VERSION: Tuple[int, int, int] = (0, 0, 7)
     TODO: List[str] = [
         "..."
     ]
@@ -50,7 +50,8 @@ class PROJECT:
         "..."
     ]
     NEWS: List[str] = [
-        "add AnnotsNested",
+        "[__INIT__.py] fix import",
+        "apply last pypi template",
     ]
 
     # FINALIZE -----------------------------------------------

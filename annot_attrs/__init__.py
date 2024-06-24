@@ -1,11 +1,34 @@
 # =====================================================================================================================
 # VERSION = (0, 0, 1)   # use import EXACT_OBJECTS! not *
-#   from .main import *                 # INcorerct
-#   from .main import EXACT_OBJECTS     # CORERCT
+#   from .main import *                 # INcorrect
+#   from .main import EXACT_OBJECTS     # CORRECT
 
 
 # =====================================================================================================================
-from .main import AnnotAttrs, AnnotsNested, Exx_AttrNotExist
+# TEMPLATE
+# from .main import (
+#     # BASE
+#     EXACT_OBJECTS,
+#
+#     # AUX
+#
+#     # TYPES
+#
+#     # EXX
+# )
+# ---------------------------------------------------------------------------------------------------------------------
+from .main import (
+    # BASE
+    AnnotAttrs,
+    AnnotsNested,
+
+    # AUX
+
+    # TYPES
+
+    # EXX
+    Exx_AttrNotExist,
+)
 
 
 # =====================================================================================================================

@@ -1,11 +1,9 @@
-import os
-import pytest
-import pathlib
-import shutil
-from tempfile import TemporaryDirectory
 from typing import *
-from configparser import ConfigParser
-from dataclasses import dataclass
+import pathlib
+
+import pytest
+from pytest import mark
+from pytest_aux import *
 
 from annot_attrs import *
 

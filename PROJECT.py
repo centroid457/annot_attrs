@@ -52,7 +52,7 @@ class PROJECT:
         "..."
     ]
     NEWS: List[str] = [
-        "apply last pypi template",
+        "apply last pypi template2",
         "[CICD+BADGES] add",
         "[TESTS] separate in own folder",
     ]

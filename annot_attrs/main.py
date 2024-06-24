@@ -49,11 +49,56 @@ class AnnotsNested:
 
         result = {}
         for cls_i in mro:
-            if cls_i == AnnotsNested:
+            if cls_i == AnnotsNested or cls_i == object:
                 break
 
             result = dict(**cls_i.__annotations__, **result)
         return result
+
+
+# =====================================================================================================================
+class AnnotsClsKeysAsValues_Meta(type):
+    """
+    return from class just name of annotation as string.
+    if no corresponding annotation - raise!
+    """
+    def __getattr__(cls, item: str) -> str | NoReturn:
+        annots = AnnotsNested.annotations__get_nested(cls)
+        if item in annots:
+            return item
+        else:
+            msg = f"[ERROR] META:'{cls.__name__}' CLASS has no annotation '{item}'"
+            raise AttributeError(msg)
+
+    def __iter__(cls):
+        annots = AnnotsNested.annotations__get_nested(cls)
+        yield from annots
+
+    def __len__(cls):
+        annots = AnnotsNested.annotations__get_nested(cls)
+        return len(annots)
+
+    def __contains__(cls, item):
+        annots = AnnotsNested.annotations__get_nested(cls)
+        return item in list(annots)
+
+
+class AnnotsClsKeysAsValues(metaclass=AnnotsClsKeysAsValues_Meta):
+    """
+    used as data (strings) container
+
+    USAGE
+    -----
+    class MyValues(AnnotsClsKeysAsValues):
+        VALUE1: str
+        VALUE2: str
+
+    print(MyValues.value1)  # AttributeError(...)
+    print(MyValues.VALUE1)  # "VALUE1"
+    print(MyValues.VALUE2)  # "VALUE2"
+    print(MyValues.VALUE3)  # AttributeError(...)
+    """
+    pass
 
 
 # =====================================================================================================================
@@ -63,6 +108,8 @@ class AnnotAttrs:
     DONT INHERIT with typing.NamedTuple! will raise!
     For NamedTuple use as separated function with obj parameter!
     """
+
+    # TODO: rename class for more suitable!!!
     def __getattr__(self, item: str) -> Union[str, NoReturn]:
         """ability to access values by attribute with any letercase ClsInstance.key and *.KEY,
         it is important in this project because

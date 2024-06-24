@@ -21,8 +21,10 @@ from .main import (
     # BASE
     AnnotAttrs,
     AnnotsNested,
+    AnnotsClsKeysAsValues,
 
     # AUX
+    AnnotsClsKeysAsValues_Meta,
 
     # TYPES
 

@@ -85,7 +85,8 @@ class AnnotsClsKeysAsValues_Meta(type):
 
 class AnnotsClsKeysAsValues(metaclass=AnnotsClsKeysAsValues_Meta):
     """
-    used as data (strings) container
+    used as data (strings) container.
+    ATTEMPT to get rid of lists[string] as strings!
 
     USAGE
     -----

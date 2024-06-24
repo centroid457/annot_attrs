@@ -44,7 +44,7 @@ class PROJECT:
     ]
 
     # HISTORY -----------------------------------------------
-    VERSION: Tuple[int, int, int] = (0, 0, 8)
+    VERSION: Tuple[int, int, int] = (0, 0, 9)
     TODO: List[str] = [
         "..."
     ]
@@ -52,9 +52,7 @@ class PROJECT:
         "..."
     ]
     NEWS: List[str] = [
-        "apply last pypi template2",
-        "[CICD+BADGES] add",
-        "[TESTS] separate in own folder",
+        "add new AnnotsClsKeysAsValues",
     ]
 
     # FINALIZE -----------------------------------------------

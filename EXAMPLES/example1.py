@@ -44,7 +44,7 @@ assert Cls()["attr2"] == 2
 obj = Cls()
 try:
     obj.annots_get_dict()
-except Exx_AttrNotExist:
+except Exx__AttrNotExist:
     pass
 else:
     assert False

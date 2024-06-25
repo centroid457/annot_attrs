@@ -2,111 +2,13 @@ from typing import *
 
 
 # =====================================================================================================================
-class Exx_AttrNotExist(Exception):
+class Exx__AttrNotExist(Exception):
     """Exception in case of not existed attribute in instance
     """
     pass
 
 
-# =====================================================================================================================
-class AnnotsNested:
-    """
-    access to all __annotations__
-        from all nested classes
-        in correct order
-
-    RULES
-    -----
-    4. nesting available with correct order!
-        class ClsFirst(BreederStrStack):
-            atr1: int
-            atr3: int = None
-
-        class ClsLast(BreederStrStack):
-            atr2: int = None
-            atr4: int
-
-        for key, value in ClsLast.annotations__get_nested_list().items():
-            print(f"{key}:{value}")
-
-        # atr1:<class 'int'>
-        # atr3:<class 'int'>
-        # atr2:<class 'int'>
-        # atr4:<class 'int'>
-    """
-    @classmethod
-    def annotations__get_nested(cls, obj: Any | None = None) -> dict[str, Any]:
-        """
-        get all annotations in correct order!
-        """
-        if obj is None:
-            obj = cls
-
-        try:
-            mro = obj.__mro__
-        except:
-            mro = obj.__class__.__mro__
-
-        result = {}
-        for cls_i in mro:
-            if cls_i == AnnotsNested or cls_i == object:
-                break
-
-            result = dict(**cls_i.__annotations__, **result)
-        return result
-
-
-# =====================================================================================================================
-class AnnotsClsKeysAsValues_Meta(type):
-    """
-    return from class just name of annotation as string.
-    if no corresponding annotation - raise!
-    """
-    def __getattr__(cls, item: str) -> str | NoReturn:
-        annots = AnnotsNested.annotations__get_nested(cls)
-        if item in annots:
-            return item
-        else:
-            msg = f"[ERROR] META:'{cls.__name__}' CLASS has no annotation '{item}'"
-            raise AttributeError(msg)
-
-    def __iter__(cls):
-        annots = AnnotsNested.annotations__get_nested(cls)
-        yield from annots
-
-    def __len__(cls):
-        annots = AnnotsNested.annotations__get_nested(cls)
-        return len(annots)
-
-    def __contains__(cls, item):
-        annots = AnnotsNested.annotations__get_nested(cls)
-        return item in list(annots)
-
-    def __getitem__(cls, item: int):
-        annots = AnnotsNested.annotations__get_nested(cls)
-        return list(annots)[item]
-
-
-class AnnotsClsKeysAsValues(metaclass=AnnotsClsKeysAsValues_Meta):
-    """
-    used as data (strings) container/OneWordStringsList
-    ATTEMPT to get rid of lists[string] as strings!
-
-    USAGE
-    -----
-    class MyValues(AnnotsClsKeysAsValues):
-        VALUE1: str
-        VALUE2: str
-
-    print(MyValues.value1)  # AttributeError(...)
-    print(MyValues.VALUE1)  # "VALUE1"
-    print(MyValues.VALUE2)  # "VALUE2"
-    print(MyValues.VALUE3)  # AttributeError(...)
-    """
-    pass
-
-
-# =====================================================================================================================
+# ---------------------------------------------------------------------------------------------------------------------
 class AnnotAttrs:
     """Check all annotated and not defined attributes in instance obtain values!
 
@@ -193,10 +95,10 @@ class AnnotAttrs:
             return getattr(obj, attrs_similar[0])
         elif len(attrs_similar) == 0:
             msg = f"[CRITICAL]no[{name=}] in any cases [{attrs_all=}]"
-            raise Exx_AttrNotExist(msg)
+            raise Exx__AttrNotExist(msg)
         else:
             msg = f"[CRITICAL]exists several similar [{attrs_similar=}]"
-            raise Exx_AttrNotExist(msg)
+            raise Exx__AttrNotExist(msg)
 
     def annots_check_values_exists(self, obj: Optional[Any] = None) -> Union[bool, NoReturn]:
         """check all annotations have values!

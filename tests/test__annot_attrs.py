@@ -41,7 +41,7 @@ class Test:
         obj = Cls()
         try:
             obj.annots_get_dict()
-        except Exx_AttrNotExist:
+        except Exx__AttrNotExist:
             pass
         else:
             assert False
@@ -68,7 +68,7 @@ class Test:
 
         try:
             Cls().ATTR222
-        except Exx_AttrNotExist:
+        except Exx__AttrNotExist:
             pass
         else:
             assert False
@@ -83,7 +83,7 @@ class Test:
 
         try:
             Cls()["ATTR222"]
-        except Exx_AttrNotExist:
+        except Exx__AttrNotExist:
             pass
         else:
             assert False
@@ -161,7 +161,7 @@ class Test:
         assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
         try:
             assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1, }
-        except Exx_AttrNotExist:
+        except Exx__AttrNotExist:
             pass   # its GOOD!!!
         else:
             assert False

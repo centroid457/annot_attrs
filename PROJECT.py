@@ -17,11 +17,11 @@ class PROJECT:
 
     # PROJECT ----------------------------------------------
     NAME_IMPORT: str = "annot_attrs"
-    KEYWORDS: List[str] = [
+    KEYWORDS: list[str] = [
         "annotations", "annots",
         "not defined attributes", "attributes"
     ]
-    CLASSIFIERS_TOPICS_ADD: List[str] = [
+    CLASSIFIERS_TOPICS_ADD: list[str] = [
         # "Topic :: Communications",
         # "Topic :: Communications :: Email",
     ]
@@ -33,7 +33,7 @@ class PROJECT:
     Designed to get list of annotated but not defined/not used attrs from class (not instance!).  
     may be helpful further in instance to check that really have values.
         """
-    FEATURES: List[str] = [
+    FEATURES: list[str] = [
         # "feat1",
         # ["feat2", "block1", "block2"],
 
@@ -44,15 +44,17 @@ class PROJECT:
     ]
 
     # HISTORY -----------------------------------------------
-    VERSION: Tuple[int, int, int] = (0, 0, 10)
-    TODO: List[str] = [
+    VERSION: tuple[int, int, int] = (0, 0, 11)
+    TODO: list[str] = [
         "..."
     ]
-    FIXME: List[str] = [
+    FIXME: list[str] = [
         "..."
     ]
-    NEWS: List[str] = [
-        "[AnnotsClsKeysAsValues] add __getitem__",
+    NEWS: list[str] = [
+        "[AnnotsClsKeysAsValues] just zero fix typing and docstr",
+        "separate main.py",
+        "[TESTS] zero ref some",
     ]
 
     # FINALIZE -----------------------------------------------

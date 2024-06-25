@@ -1,8 +1,4 @@
-from typing import *
-import pathlib
-
 import pytest
-from pytest import mark
 from pytest_aux import *
 
 from annot_attrs import *

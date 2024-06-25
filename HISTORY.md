@@ -11,6 +11,12 @@
 ********************************************************************************
 ## NEWS
 
+0.0.11 (2024/06/25 17:21:59)
+------------------------------
+- [AnnotsClsKeysAsValues] just zero fix typing and docstr  
+- separate main.py  
+- [TESTS] zero ref some  
+
 0.0.10 (2024/06/25 11:42:34)
 ------------------------------
 - [AnnotsClsKeysAsValues] add __getitem__  

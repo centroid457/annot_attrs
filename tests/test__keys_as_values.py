@@ -11,7 +11,7 @@ class Victim(AnnotsClsKeysAsValues):
     ATTR3: str
 
 
-Victim_VALUES = ["ATTR1", "ATTR2", "ATTR3"]
+Victim_VALUES = ("ATTR1", "ATTR2", "ATTR3")
 
 
 # =====================================================================================================================
@@ -50,7 +50,7 @@ def test__geitem(args, _EXPECTED):
 
 
 def test__iter():
-    assert list(Victim) == Victim_VALUES
+    assert tuple(Victim) == Victim_VALUES
 
 
 def test__len():
@@ -61,6 +61,11 @@ def test__in():
     assert "attr1" not in Victim
     assert "ATTR1" in Victim
     assert "ATTR2" in Victim
+
+
+def test__str_repr():
+    assert str(Victim) == str(Victim_VALUES) == "('ATTR1', 'ATTR2', 'ATTR3')"
+    assert repr(Victim) == f"Victim{Victim_VALUES}" == "Victim('ATTR1', 'ATTR2', 'ATTR3')"
 
 
 # =====================================================================================================================

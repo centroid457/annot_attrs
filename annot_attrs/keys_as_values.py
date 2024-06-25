@@ -33,12 +33,20 @@ class AnnotsClsKeysAsValues_Meta(type):
         annots = AnnotsNested.annotations__get_nested(cls)
         return list(annots)[item]
 
+    def __str__(cls) -> str:
+        annots = AnnotsNested.annotations__get_nested(cls)
+        return str(tuple(annots))
+
+    def __repr__(cls) -> str:
+        annots = AnnotsNested.annotations__get_nested(cls)
+        return f"{cls.__name__}{tuple(annots)}"
+
 
 # ---------------------------------------------------------------------------------------------------------------------
 class AnnotsClsKeysAsValues(metaclass=AnnotsClsKeysAsValues_Meta):
     """
     used as simple string data container, same as OneWordStringsList with access to values by dot.
-    ATTEMPT to get rid of bare data like list[str]!
+    ATTEMPT to get rid of bare data like list[str] ot tuple[str]!
 
     WHY NOT ENUM?
     -------------
@@ -50,6 +58,12 @@ class AnnotsClsKeysAsValues(metaclass=AnnotsClsKeysAsValues_Meta):
     5. enum keep instances, not the final results.
     6. in enum values are abstract (not valuable)! so why we need to use them if we dont care? and why we need to create not used extra data?
     FINALLY: so here you can directly accessing to exact string values by class attributes.
+
+    WHY NOT NAMEDTUPLE?
+    -------------------
+    1. its again!.. why we need duplicating values if we already have it in names?
+    all we want - access by '*.attribute' to the value,
+    so minimum we need is using annotations, that's enough for IDE checker and return string values!
 
     USAGE
     -----

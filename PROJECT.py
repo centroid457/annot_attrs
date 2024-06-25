@@ -44,7 +44,7 @@ class PROJECT:
     ]
 
     # HISTORY -----------------------------------------------
-    VERSION: tuple[int, int, int] = (0, 0, 11)
+    VERSION: tuple[int, int, int] = (0, 0, 12)
     TODO: list[str] = [
         "..."
     ]
@@ -52,9 +52,7 @@ class PROJECT:
         "..."
     ]
     NEWS: list[str] = [
-        "[AnnotsClsKeysAsValues] just zero fix typing and docstr",
-        "separate main.py",
-        "[TESTS] zero ref some",
+        "[AnnotsClsKeysAsValues] add str/repr",
     ]
 
     # FINALIZE -----------------------------------------------

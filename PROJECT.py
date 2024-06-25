@@ -44,7 +44,7 @@ class PROJECT:
     ]
 
     # HISTORY -----------------------------------------------
-    VERSION: Tuple[int, int, int] = (0, 0, 9)
+    VERSION: Tuple[int, int, int] = (0, 0, 10)
     TODO: List[str] = [
         "..."
     ]
@@ -52,7 +52,7 @@ class PROJECT:
         "..."
     ]
     NEWS: List[str] = [
-        "add new AnnotsClsKeysAsValues",
+        "[AnnotsClsKeysAsValues] add __getitem__",
     ]
 
     # FINALIZE -----------------------------------------------

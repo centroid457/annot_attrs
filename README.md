@@ -9,7 +9,7 @@
 ![Commit/Count/y](https://img.shields.io/github/commit-activity/y/centroid457/annot_attrs)
 ![Commit/Count/m](https://img.shields.io/github/commit-activity/m/centroid457/annot_attrs)
 
-# annot_attrs (current v0.0.9/![Ver/Pypi Latest](https://img.shields.io/pypi/v/annot_attrs?label=pypi%20latest))
+# annot_attrs (current v0.0.10/![Ver/Pypi Latest](https://img.shields.io/pypi/v/annot_attrs?label=pypi%20latest))
 
 ## DESCRIPTION_SHORT
 work with annotated but not defined/not used attrs in class

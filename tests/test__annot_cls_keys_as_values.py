@@ -10,30 +10,46 @@ from annot_attrs import *
 
 # =====================================================================================================================
 class Victim(AnnotsClsKeysAsValues):
-    TRUE: str
-    FALSE: str
-    NONE: str
+    ATTR1: str
+    ATTR2: str
+    ATTR3: str
 
 
-Victim_VALUES = ["TRUE", "FALSE", "NONE"]
+Victim_VALUES = ["ATTR1", "ATTR2", "ATTR3"]
 
 
 # =====================================================================================================================
 @pytest.mark.parametrize(
     argnames="args, _EXPECTED",
     argvalues=[
-        ("TRUE", "TRUE"),
-        ("True", AttributeError),
-        ("true", AttributeError),
+        ("ATTR1", "ATTR1"),
+        ("attr1", AttributeError),
 
-        ("FALSE", "FALSE"),
-        ("NONE", "NONE"),
-
-        ("meth", AttributeError),
+        ("ATTR2", "ATTR2"),
+        ("notExists", AttributeError),
+        ("use spaces", AttributeError),
     ]
 )
 def test__values(args, _EXPECTED):
     func_link = lambda value: getattr(Victim, value)
+    pytest_func_tester__no_kwargs(func_link, args, _EXPECTED)
+
+
+@pytest.mark.parametrize(
+    argnames="args, _EXPECTED",
+    argvalues=[
+        (0, "ATTR1"),
+        (1, "ATTR2"),
+        (2, "ATTR3"),
+        (3, IndexError),
+        (-1, "ATTR3"),
+        (-2, "ATTR2"),
+        (-3, "ATTR1"),
+        (-4, IndexError),
+    ]
+)
+def test__geitem(args, _EXPECTED):
+    func_link = lambda value: Victim[value]
     pytest_func_tester__no_kwargs(func_link, args, _EXPECTED)
 
 
@@ -46,10 +62,9 @@ def test__len():
 
 
 def test__in():
-    assert "true" not in Victim
-    assert "TRUE" in Victim
-    assert "FALSE" in Victim
-    assert "NONE" in Victim
+    assert "attr1" not in Victim
+    assert "ATTR1" in Victim
+    assert "ATTR2" in Victim
 
 
 # =====================================================================================================================

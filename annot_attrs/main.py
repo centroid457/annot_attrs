@@ -82,10 +82,14 @@ class AnnotsClsKeysAsValues_Meta(type):
         annots = AnnotsNested.annotations__get_nested(cls)
         return item in list(annots)
 
+    def __getitem__(cls, item: int):
+        annots = AnnotsNested.annotations__get_nested(cls)
+        return list(annots)[item]
+
 
 class AnnotsClsKeysAsValues(metaclass=AnnotsClsKeysAsValues_Meta):
     """
-    used as data (strings) container.
+    used as data (strings) container/OneWordStringsList
     ATTEMPT to get rid of lists[string] as strings!
 
     USAGE

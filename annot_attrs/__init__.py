@@ -20,6 +20,7 @@
 from .annots_nested import (
     # BASE
     AnnotsNested,
+    IterAnnotValues,
     # AUX
     # TYPES
     # EXX

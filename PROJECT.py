@@ -38,7 +38,7 @@ class PROJECT_BASE:
 
 
 # =====================================================================================================================
-class PROJECT:
+class PROJECT(PROJECT_BASE):
     # PROJECT ----------------------------------------------
     NAME_IMPORT: str = "annot_attrs"
     KEYWORDS: list[str] = [
@@ -64,7 +64,7 @@ class PROJECT:
     ]
 
     # HISTORY -----------------------------------------------
-    VERSION: tuple[int, int, int] = (0, 0, 12)
+    VERSION: tuple[int, int, int] = (0, 0, 13)
     TODO: list[str] = [
         "..."
     ]

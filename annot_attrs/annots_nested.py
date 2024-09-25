@@ -87,6 +87,9 @@ class IterAnnotValues(AnnotsNested):
     ---------------------
     pyqt_templates.pte_highlights.StylesPython
 
+    WHY NOT - NAMEDTUPLE
+    --------------------
+    typing.NamedTuple is good as collection! but nesting is not accepted!
     """
 
     def __iter__(self):

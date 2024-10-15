@@ -64,7 +64,7 @@ class PROJECT(PROJECT_BASE):
     ]
 
     # HISTORY -----------------------------------------------
-    VERSION: tuple[int, int, int] = (0, 0, 13)
+    VERSION: tuple[int, int, int] = (0, 1, 0)
     TODO: list[str] = [
         "..."
     ]
@@ -72,7 +72,11 @@ class PROJECT(PROJECT_BASE):
         "..."
     ]
     NEWS: list[str] = [
-        "[AnnotsNested] add IterAnnotValues",
+        ["BIG REF!",
+         "full renames",
+         "new logic",
+         "separate all",
+         ]
     ]
 
 

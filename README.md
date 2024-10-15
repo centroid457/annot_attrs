@@ -56,34 +56,40 @@ See tests, sourcecode and docstrings for other examples.
 
 ------------------------------
 ### 1. example1.py
+
 ```python
 # ===============================================================
 ### 1. inheritance
 # (BEST practice - dont mess classes! use as separated object!)
 from annot_attrs import *
 
+
 class Cls:
-    ATTR1: int
-    ATTR2: int = 2
+	ATTR1: int
+	ATTR2: int = 2
+
 
 obj = Cls(1)
 
-assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
-assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1, }
-
+assert AnnotAllDefined().annots_get_set(obj) == {"ATTR1", }
+assert AnnotAllDefined().annots_get_dict(obj) == {"ATTR1": 1, }
 
 # ===============================================================
 from annot_attrs import *
 
-class Cls(AnnotAttrs):
-    ATTR1: int
-    ATTR2: int = 2
+
+class Cls(AnnotAllDefined):
+	ATTR1: int
+	ATTR2: int = 2
+
 
 assert Cls().annots_get_set() == {"ATTR1", }
 
+
 class Cls2(Cls):
-    ATTR1: int = 2
-    ATTR3: int
+	ATTR1: int = 2
+	ATTR3: int
+
 
 assert Cls2().annots_get_set() == {"ATTR1", "ATTR3", }
 
@@ -102,37 +108,38 @@ assert Cls()["attr2"] == 2
 
 obj = Cls()
 try:
-    obj.annots_get_dict()
-except Exx__AttrNotExist:
-    pass
+	obj.annots_get_dict()
+except Exx__AnnotNotDefined:
+	pass
 else:
-    assert False
+	assert False
 
 obj.ATTR1 = 1
 assert obj.annots_get_dict() == {"ATTR1": 1}
-
 
 # ===============================================================
 ### 2. Indepandant usage
 from annot_attrs import *
 
 try:
-    class Cls(AnnotAttrs, NamedTuple):
-        ATTR1: int
-        ATTR2: int = 2
+	class Cls(AnnotAllDefined, NamedTuple):
+		ATTR1: int
+		ATTR2: int = 2
 except TypeError:
-    # TypeError: can only inherit from a NamedTuple type and Generic
-    pass
+	# TypeError: can only inherit from a NamedTuple type and Generic
+	pass
 else:
-    assert True
+	assert True
+
 
 class Cls(NamedTuple):
-    ATTR1: int
-    ATTR2: int = 2
+	ATTR1: int
+	ATTR2: int = 2
+
 
 obj = Cls(1)
-assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
-assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1}
+assert AnnotAllDefined().annots_get_set(obj) == {"ATTR1", }
+assert AnnotAllDefined().annots_get_dict(obj) == {"ATTR1": 1}
 ```
 
 ********************************************************************************

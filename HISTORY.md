@@ -13,25 +13,25 @@
 
 0.0.13 (2024/09/24 18:09:17)
 ------------------------------
-- [AnnotsNested] add IterAnnotValues  
+- [AnnotAux] add AnnotValuesIter  
 
 0.0.12 (2024/06/25 18:49:02)
 ------------------------------
-- [AnnotsClsKeysAsValues] add str/repr  
+- [AnnotClsKeysAsValues] add str/repr  
 
 0.0.11 (2024/06/25 17:21:59)
 ------------------------------
-- [AnnotsClsKeysAsValues] just zero fix typing and docstr  
+- [AnnotClsKeysAsValues] just zero fix typing and docstr  
 - separate main.py  
 - [TESTS] zero ref some  
 
 0.0.10 (2024/06/25 11:42:34)
 ------------------------------
-- [AnnotsClsKeysAsValues] add __getitem__  
+- [AnnotClsKeysAsValues] add __getitem__  
 
 0.0.9 (2024/06/24 16:37:21)
 ------------------------------
-- add new AnnotsClsKeysAsValues  
+- add new AnnotClsKeysAsValues  
 
 0.0.8 (2024/06/24 15:38:31)
 ------------------------------
@@ -46,7 +46,7 @@
 
 0.0.6 (2024/05/22 10:21:07)
 ------------------------------
-- add AnnotsNested  
+- add AnnotAux  
 
 0.0.5 (2024/03/27 10:54:57)
 ------------------------------

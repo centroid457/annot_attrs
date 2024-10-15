@@ -9,14 +9,14 @@ class Cls:
 
 obj = Cls(1)
 
-assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
-assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1, }
+assert AnnotAllDefined().annots_get_set(obj) == {"ATTR1", }
+assert AnnotAllDefined().annots_get_dict(obj) == {"ATTR1": 1, }
 
 
 # ===============================================================
 from annot_attrs import *
 
-class Cls(AnnotAttrs):
+class Cls(AnnotAllDefined):
     ATTR1: int
     ATTR2: int = 2
 
@@ -44,7 +44,7 @@ assert Cls()["attr2"] == 2
 obj = Cls()
 try:
     obj.annots_get_dict()
-except Exx__AttrNotExist:
+except Exx__AnnotNotDefined:
     pass
 else:
     assert False
@@ -58,7 +58,7 @@ assert obj.annots_get_dict() == {"ATTR1": 1}
 from annot_attrs import *
 
 try:
-    class Cls(AnnotAttrs, NamedTuple):
+    class Cls(AnnotAllDefined, NamedTuple):
         ATTR1: int
         ATTR2: int = 2
 except TypeError:
@@ -72,5 +72,5 @@ class Cls(NamedTuple):
     ATTR2: int = 2
 
 obj = Cls(1)
-assert AnnotAttrs().annots_get_set(obj) == {"ATTR1", }
-assert AnnotAttrs().annots_get_dict(obj) == {"ATTR1": 1}
+assert AnnotAllDefined().annots_get_set(obj) == {"ATTR1", }
+assert AnnotAllDefined().annots_get_dict(obj) == {"ATTR1": 1}

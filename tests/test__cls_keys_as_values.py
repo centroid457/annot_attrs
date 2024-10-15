@@ -5,7 +5,7 @@ from annot_attrs import *
 
 
 # =====================================================================================================================
-class Victim(AnnotsClsKeysAsValues):
+class Victim(AnnotClsKeysAsValues):
     ATTR1: str
     ATTR2: str
     ATTR3: str

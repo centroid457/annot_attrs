@@ -1,16 +1,16 @@
 from typing import *
 
-from annot_attrs import AnnotsNested
+from .annot_aux import AnnotAux
 
 
 # =====================================================================================================================
-class AnnotsClsKeysAsValues_Meta(type):
+class AnnotClsKeysAsValues_Meta(type):
     """
     return from class just name of annotation as string value.
     if no corresponding annotation - raise!
     """
     def __getattr__(cls, item: str) -> str | NoReturn:
-        annots = AnnotsNested.annotations__get_nested(cls)
+        annots = AnnotAux.annot__get_nested__dict_types(cls)
         if item in annots:
             return item
         else:
@@ -18,32 +18,32 @@ class AnnotsClsKeysAsValues_Meta(type):
             raise AttributeError(msg)
 
     def __iter__(cls) -> Iterable[str]:
-        annots = AnnotsNested.annotations__get_nested(cls)
+        annots = AnnotAux.annot__get_nested__dict_types(cls)
         yield from annots
 
     def __len__(cls) -> int:
-        annots = AnnotsNested.annotations__get_nested(cls)
+        annots = AnnotAux.annot__get_nested__dict_types(cls)
         return len(annots)
 
     def __contains__(cls, item: str) -> bool:
-        annots = AnnotsNested.annotations__get_nested(cls)
-        return item in list(annots)
+        annots = AnnotAux.annot__get_nested__dict_types(cls)
+        return item in annots
 
     def __getitem__(cls, item: int) -> str | NoReturn:
-        annots = AnnotsNested.annotations__get_nested(cls)
+        annots = AnnotAux.annot__get_nested__dict_types(cls)
         return list(annots)[item]
 
     def __str__(cls) -> str:
-        annots = AnnotsNested.annotations__get_nested(cls)
+        annots = AnnotAux.annot__get_nested__dict_types(cls)
         return str(tuple(annots))
 
     def __repr__(cls) -> str:
-        annots = AnnotsNested.annotations__get_nested(cls)
+        annots = AnnotAux.annot__get_nested__dict_types(cls)
         return f"{cls.__name__}{tuple(annots)}"
 
 
 # ---------------------------------------------------------------------------------------------------------------------
-class AnnotsClsKeysAsValues(metaclass=AnnotsClsKeysAsValues_Meta):
+class AnnotClsKeysAsValues(metaclass=AnnotClsKeysAsValues_Meta):
     """
     used as simple string data container, same as OneWordStringsList with access to values by dot.
     ATTEMPT to get rid of bare data like list[str] ot tuple[str]!
@@ -58,7 +58,7 @@ class AnnotsClsKeysAsValues(metaclass=AnnotsClsKeysAsValues_Meta):
             OFF = "OFF"
 
     just replace it for
-        class States(AnnotsClsKeysAsValues):
+        class States(AnnotClsKeysAsValues):
             ON: str
             OFF: str
 
@@ -69,7 +69,7 @@ class AnnotsClsKeysAsValues(metaclass=AnnotsClsKeysAsValues_Meta):
     USAGE
     -----
     1. USE ANNOTATED ATTRIBUTES!
-        class MyValues(AnnotsClsKeysAsValues):
+        class MyValues(AnnotClsKeysAsValues):
             VALUE1: str
             VALUE2: str
 
@@ -79,7 +79,7 @@ class AnnotsClsKeysAsValues(metaclass=AnnotsClsKeysAsValues_Meta):
         print(MyValues.VALUE3)  # AttributeError(...)
 
     2. DONT SET VALUES! it would break the main idea! (but maybe you want it).
-        class MyValues(AnnotsClsKeysAsValues):
+        class MyValues(AnnotClsKeysAsValues):
             VALUE1: str
             VALUE2: str = 123
 
@@ -87,7 +87,7 @@ class AnnotsClsKeysAsValues(metaclass=AnnotsClsKeysAsValues_Meta):
         print(MyValues.VALUE2)  # 123
 
     3. ANNOTATING TYPE IS NOT IMPORTANT! cause of no values exists!
-        class MyValues(AnnotsClsKeysAsValues):
+        class MyValues(AnnotClsKeysAsValues):
             VALUE1: Any
             VALUE2: Any
 
@@ -95,7 +95,7 @@ class AnnotsClsKeysAsValues(metaclass=AnnotsClsKeysAsValues_Meta):
         print(MyValues.VALUE2)  # "VALUE2"
 
     4. CANT USE INSTANCES!
-        class MyValues(AnnotsClsKeysAsValues):
+        class MyValues(AnnotClsKeysAsValues):
             VALUE1: str
             VALUE2: str
 

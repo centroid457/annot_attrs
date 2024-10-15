@@ -17,27 +17,27 @@
 #     # EXX
 # )
 # ---------------------------------------------------------------------------------------------------------------------
-from .annots_nested import (
+from .annot_aux import (
     # BASE
-    AnnotsNested,
-    IterAnnotValues,
+    AnnotAux,
     # AUX
     # TYPES
     # EXX
 )
-from .annot_attr import (
+from .annot_iter_values import AnnotValuesIter
+from .annot_all_defined import (
     # BASE
-    AnnotAttrs,
+    AnnotAllDefined,
     # AUX
     # TYPES
     # EXX
-    Exx__AttrNotExist,
+    Exx__AnnotNotDefined,
 )
-from .keys_as_values import (
+from .annot_cls_keys_as_values import (
     # BASE
-    AnnotsClsKeysAsValues,
+    AnnotClsKeysAsValues,
     # AUX
-    AnnotsClsKeysAsValues_Meta,
+    AnnotClsKeysAsValues_Meta,
     # TYPES
     # EXX
 )

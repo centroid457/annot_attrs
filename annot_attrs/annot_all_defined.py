@@ -1,4 +1,5 @@
-from . import AnnotAux, Exx__AnnotNotDefined
+from typing import *
+from . import AnnotAux
 
 
 # =====================================================================================================================
@@ -12,12 +13,7 @@ class AnnotAllDefined(AnnotAux):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # check ------------------------------------
-        dict_type = self.annot__get_nested__dict_types()
-        not_defined = self.annot__get_not_defined()
-        if not_defined:
-            msg = f"[CRITICAL]{not_defined=} in {dict_type}"
-            raise Exx__AnnotNotDefined(msg)
+        self.annot__raise_if_not_defined()  # check only after superInit!
 
     # TODO: deside is it really need NamedTuple and dataclasses??? seems its not need!!! - NEED!!! realise later!!!
 

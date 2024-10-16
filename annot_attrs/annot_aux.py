@@ -1,6 +1,7 @@
 from typing import *
 
 from classes_aux import *
+from .static import Exx__AnnotNotDefined
 
 
 # =====================================================================================================================
@@ -110,6 +111,18 @@ class AnnotAux:
         check if all annotated attrs have value!
         """
         return not self.annot__get_not_defined(obj)
+
+    def annot__raise_if_not_defined(self, obj: Any | None = None) -> None | NoReturn:
+        """
+        GOAL
+        ----
+        check if all annotated attrs have value!
+        """
+        not_defined = self.annot__get_not_defined(obj)
+        if not_defined:
+            dict_type = self.annot__get_nested__dict_types(obj)
+            msg = f"[CRITICAL]{not_defined=} in {dict_type}"
+            raise Exx__AnnotNotDefined(msg)
 
     # -----------------------------------------------------------------------------------------------------------------
     def annot__print(self, obj: Any = None) -> str:

@@ -9,7 +9,7 @@
 ![Commit/Count/y](https://img.shields.io/github/commit-activity/y/centroid457/annot_attrs)
 ![Commit/Count/m](https://img.shields.io/github/commit-activity/m/centroid457/annot_attrs)
 
-# annot_attrs (current v0.1.0/![Ver/Pypi Latest](https://img.shields.io/pypi/v/annot_attrs?label=pypi%20latest))
+# annot_attrs (current v0.1.1/![Ver/Pypi Latest](https://img.shields.io/pypi/v/annot_attrs?label=pypi%20latest))
 
 ## DESCRIPTION_SHORT
 work with annotated but not defined/not used attrs in class
@@ -60,6 +60,7 @@ See tests, sourcecode and docstrings for other examples.
 # ===============================================================
 ### 1. inheritance
 # (BEST practice - dont mess classes! use as separated object!)
+from typing import *
 from annot_attrs import *
 
 class Cls:

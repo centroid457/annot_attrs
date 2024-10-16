@@ -1,5 +1,4 @@
-from typing import *
-from annot_attrs import AnnotAux
+from . import AnnotAux
 
 
 # =====================================================================================================================

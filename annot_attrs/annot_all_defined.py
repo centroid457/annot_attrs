@@ -1,18 +1,7 @@
-from typing import *
-
-from classes_aux import *
-
-from .annot_aux import AnnotAux
+from . import AnnotAux, Exx__AnnotNotDefined
 
 
 # =====================================================================================================================
-class Exx__AnnotNotDefined(Exception):
-    """Exception in case of not defined attribute in instance
-    """
-    pass
-
-
-# ---------------------------------------------------------------------------------------------------------------------
 class AnnotAllDefined(AnnotAux):
     """Check all annotated and not defined attributes in instance obtain values!
 
@@ -30,7 +19,7 @@ class AnnotAllDefined(AnnotAux):
             msg = f"[CRITICAL]{not_defined=} in {dict_type}"
             raise Exx__AnnotNotDefined(msg)
 
-    # TODO: deside is it really need NamedTuple and dataclasses??? seems its not need!!!
+    # TODO: deside is it really need NamedTuple and dataclasses??? seems its not need!!! - NEED!!! realise later!!!
 
     # def annots_get_set(self, obj: Optional[Any] = None) -> Set[str]:
     #     """get undefined annotated attributes in class (not instance!)

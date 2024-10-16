@@ -1,6 +1,7 @@
 # ===============================================================
 ### 1. inheritance
 # (BEST practice - dont mess classes! use as separated object!)
+from typing import *
 from annot_attrs import *
 
 class Cls:

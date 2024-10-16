@@ -64,7 +64,7 @@ class PROJECT(PROJECT_BASE):
     ]
 
     # HISTORY -----------------------------------------------
-    VERSION: tuple[int, int, int] = (0, 1, 2)
+    VERSION: tuple[int, int, int] = (0, 1, 3)
     TODO: list[str] = [
         "..."
     ]
@@ -72,7 +72,7 @@ class PROJECT(PROJECT_BASE):
         "..."
     ]
     NEWS: list[str] = [
-        "[AnnotAllDefined] add annot__raise_if_not_defined"
+        "[AnnotAux] fix annot__get_nested__dict_types with several values",
     ]
 
 

@@ -63,7 +63,9 @@ class AnnotAux:
             if cls_i == AnnotAux or cls_i == object:
                 break
 
-            result = dict(**cls_i.__annotations__, **result)
+            _result_i = dict(cls_i.__annotations__)
+            _result_i.update(result)
+            result = _result_i
         return result
 
     def annot__get_nested__dict_values(self, obj: Any | None = None) -> dict[str, Any]:

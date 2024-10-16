@@ -64,7 +64,7 @@ class PROJECT(PROJECT_BASE):
     ]
 
     # HISTORY -----------------------------------------------
-    VERSION: tuple[int, int, int] = (0, 1, 1)
+    VERSION: tuple[int, int, int] = (0, 1, 2)
     TODO: list[str] = [
         "..."
     ]
@@ -72,7 +72,7 @@ class PROJECT(PROJECT_BASE):
         "..."
     ]
     NEWS: list[str] = [
-        "add static.py"
+        "[AnnotAllDefined] add annot__raise_if_not_defined"
     ]
 
 
